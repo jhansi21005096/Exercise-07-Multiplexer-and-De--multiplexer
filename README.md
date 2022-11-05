@@ -1,5 +1,6 @@
 # Exercise-07-Multiplexer-and-De-multiplexer
-### AIM: To implement 4 X1 multiplexer and 1X4 de multiplexer using verilog and validate its outputs
+### AIM: 
+To implement 4 X1 multiplexer and 1X4 de multiplexer using verilog and validate its outputs
 ### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
 ### SOFTWARE REQUIRED:   Quartus prime
 ### THEORY 
@@ -47,16 +48,57 @@ If the control input changes to AB = 10, then all the gates are restricted excep
  
  
 ### Procedure
-/* write all the steps invloved */
+step1: Start the module.
+
+step2: Declare the inputs and outputs along with the select lines according to the multiplexer and demultiplexer.
+
+step3: Use wire to assign intermediate outputs.
+
+step4: Use and,or and not gates to get the desired output.
+
+step5: End the module.
+
+step6: Generate RTL realization and timing diagrams.
+
+
 
 
 
 ### PROGRAM 
 /*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+Developed by: K.Jhansi
+RegisterNumber: 212221230045 
 */
+# Multiplexer:
+```
+module ex07(I0,I1,I2,I3,S0,S1,Y);
+  input I0,I1,I2,I3,S0,S1;
+  output Y;
+  wire P,Q,R,S,S0c,S1c;
+  not(S0c,S0);
+  nor(S1c,S1);
+  and (P,S0c,S1c,I0);
+  and(Q,S0c,S1,I1);
+  and(R,S0,S1c,I2);
+  and(S,S0,S1,I3);
+  or(Y,P,Q,R,S);
+  endmodule
+```
+# Demultiplexer:
+```
+module ex07(Y0,Y1,Y2,Y3,S0,S1,I);
+  input I,S0,S1;
+  output Y0,Y1,Y2,Y3;
+  wire S0c,S1c;
+  not(S0c,S0);
+  nor(S1c,S1);
+  and (Y0,I,S0c,S1c);
+  and(Y1,I,S0c,S1);
+  and(Y2,I,S0,S1c);
+  and(Y3,I,S0,S1);
+  endmodule
+  ```
 
 
 
@@ -64,25 +106,34 @@ RegisterNumber:
 
 
 ### RTL LOGIC  
+### Multiplexer:
 
+![output](output1.png)
 
-
-
-
+### De Multiplexer:
+![output](outpu2.png)
 
 
 
 ### TIMING DIGRAMS  
-
-
-
-
+### Multiplexer:
+### when I0=1
+![output](output3.png)
+### when I1=1
+![output](output4.png)
+### when I2=1
+![output](output5.png)
+### when I3=1
+![output](ouput6.png)
+### De Multiplexer:
+![output](output7.png)
 
 ### TRUTH TABLE 
+### Multiplexer:
+![output](output8.png)
 
-
-
-
-
+### De Multiplexer:
+![output](output9.png)
 
 ### RESULTS 
+4 X1 multiplexer and 1X4 de multiplexer has been implemented using verilog and outputs are validated.
